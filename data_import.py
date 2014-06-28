@@ -51,7 +51,7 @@ class SingleSiteCSVParser:
             # Add pollutants to collection if they are not already there
             for pollutant in self.pollutants:
                 if pollutant not in self.pollutant_collection.objects():
-                    pollutant_collection.add_pollutant(pollutant)
+                    self.pollutant_collection.add_pollutant(pollutant)
 
     def parse_row(self, row):
         # Skip the first lines of the header
