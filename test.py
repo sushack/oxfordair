@@ -3,7 +3,7 @@ import unittest
 from models import Pollutant, PollutantCollection, PollutantData, PollutantDataCollection
 from models import Site, SiteCollection
 
-class TestModels(unittest.TestCase):
+class TestApplication(unittest.TestCase):
 
     def setUp(self):
         # adding some pollutants
@@ -51,6 +51,8 @@ class TestModels(unittest.TestCase):
         self.pdata_collection.add_pollutant_data(self.pdata1)
         self.pdata_collection.add_pollutant_data(self.pdata2)
         self.assertEqual(len(self.pdata_collection.objects()), 2)
+
+    # Controller Tests
         
 if __name__ == '__main__':
     unittest.main()
