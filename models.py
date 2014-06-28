@@ -14,6 +14,14 @@ class PollutantCollection:
     def objects(self):
         return self.pollutants
 
+    def find(self, id=None, name=None):
+        ret = self.pollutants
+        if id is not None:
+            ret = filter(lambda x: x.id == id, ret)
+        if name is not None:
+            ret = filter(lambda x: x.name == name, ret)
+        return ret
+
 class Site:
     def __init__(self, id, name, available_pollutants):
         self.id = id
@@ -49,7 +57,7 @@ class PollutantDataCollection:
         return self.pollutant_data
 
     def find(self, site=None, pollutant=None):
-        ret = pollutant_data
+        ret = self.pollutant_data
         if site is not None:
             ret = filter(lambda x: x.site == site, ret)
         if pollutant is not None:
