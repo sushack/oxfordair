@@ -49,4 +49,4 @@ if __name__ == '__main__':
     SingleSiteCSVParser("data/OX_2014.csv", site_collection, pollutant_collection, pollutant_data_collection)
     SingleSiteCSVParser("data/OX8_2014.csv", site_collection, pollutant_collection, pollutant_data_collection)
     
-    app.run(debug=True)
+    app.run(debug=True, host="0.0.0.0")

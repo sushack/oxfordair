@@ -2,6 +2,7 @@ import unittest
 
 from models import Pollutant, PollutantCollection, PollutantData, PollutantDataCollection
 from models import Site, SiteCollection
+from data_import import SingleSiteCSVParser
 
 class TestApplication(unittest.TestCase):
 
@@ -17,6 +18,9 @@ class TestApplication(unittest.TestCase):
         # adding some pollutantData
         self.pdata1 = PollutantData(self.pollutant1, self.site1, "2014-06-28T10:00:00+00:00", "50")
         self.pdata2 = PollutantData(self.pollutant2, self.site1, "2014-06-28T10:00:00+00:00", "40")
+
+        # data import init
+        
         
     def test_should_add_pollutant_increase_objects(self):
         self.pollutants_collection = PollutantCollection()
@@ -52,7 +56,20 @@ class TestApplication(unittest.TestCase):
         self.pdata_collection.add_pollutant_data(self.pdata2)
         self.assertEqual(len(self.pdata_collection.objects()), 2)
 
-    # Controller Tests
+    # data import Tests
+    def test_should_SingleSiteCSVParser_gives_an_array_of_pollutants(self):
+        site_collection = SiteCollection()
+        pollutant_collection = PollutantCollection()
+        pollutant_data_collection = PollutantDataCollection()
+        SingleSiteCSVParser("data/OX8_2014.csv", site_collection, pollutant_collection, pollutant_data_collection)
+        self.assertEqual( len(pollutant_collection.objects()), 9  )
+
+    def test_should_SingleSiteCSVParser_gives_an_array_of_pollutantsData(self):
+        site_collection = SiteCollection()
+        pollutant_collection = PollutantCollection()
+        pollutant_data_collection = PollutantDataCollection()
+        SingleSiteCSVParser("data/OX8_2014.csv", site_collection, pollutant_collection, pollutant_data_collection)
+        self.assertEqual( len(pollutant_data_collection.objects()), 29340  )
         
 if __name__ == '__main__':
     unittest.main()
