@@ -16,6 +16,7 @@ class TestModels(unittest.TestCase):
         
         # adding some pollutantData
         self.pdata1 = PollutantData(self.pollutant1, self.site1, "2014-06-28T10:00:00+00:00", "50")
+        self.pdata2 = PollutantData(self.pollutant2, self.site1, "2014-06-28T10:00:00+00:00", "40")
         
     def test_should_add_pollutant_increase_objects(self):
         self.pollutants_collection = PollutantCollection()
@@ -44,6 +45,12 @@ class TestModels(unittest.TestCase):
         self.pdata_collection = PollutantDataCollection()
         self.pdata_collection.add_pollutant_data(self.pdata1)
         self.assertEqual(len(self.pdata_collection.objects()), 1)
+
+    def test_should_objects_gives_all_pollutant_data(self):
+        self.pdata_collection = PollutantDataCollection()
+        self.pdata_collection.add_pollutant_data(self.pdata1)
+        self.pdata_collection.add_pollutant_data(self.pdata2)
+        self.assertEqual(len(self.pdata_collection.objects()), 2)
         
 if __name__ == '__main__':
     unittest.main()
