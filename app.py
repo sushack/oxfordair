@@ -14,17 +14,28 @@ def get_pollutants():
 
 @app.route('/sites')
 def get_sites():
-    return 'Sites'
+    data = [{"id": s.id,
+                    "name": s.name,
+                    "pollutants": [p.id for p in s.available_pollutants]} for s in site_collection.objects()]
+    print data
+    return jsonify({"sites": data})
 
 @app.route('/sites/<site_id>/pollutants')
-def get_pollutants_by_sites_with_query():
+def get_pollutants_by_sites_with_query(site_id):
+    site = site_collection.get_by_id(site_id)
 
-    start_date = request.args.get('start_date', '')
-    end_date = request.args.get('end_date', '')
-    frequency = request.args.get('frequency', '')
-    summary = request.args.get('summary', '')
+    if site is None:
+        abort(404)
+
+    site_pollution_data = pollutant_data_collection.find(site=site)
+    print site_pollution_data
     
-    return 'Pollutants by site'
+    data = [{"value": d.value,
+             "datetime": d.timestamp,
+             "pollutant_id": d.pollutant.id
+            } for d in site_pollution_data]
+    print data
+    return jsonify({"pollutant_data": data})
 
 @app.route('/sites/<site_id>/pollutants/<pollutant_id>')
 def get_polutants_by_sites_and_pollutant_with_query():

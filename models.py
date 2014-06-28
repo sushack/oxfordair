@@ -65,7 +65,7 @@ class PollutantDataCollection:
     def find(self, site=None, pollutant=None):
         ret = self.pollutant_data
         if site is not None:
-            ret = filter(lambda x: x.site == site, ret)
+            ret = filter(lambda x: x.site.id == site.id, ret)
         if pollutant is not None:
-            ret = filter(lambda x: x.pollutant == pollutant, ret)
+            ret = filter(lambda x: x.pollutant.id == pollutant.id, ret)
         return ret
