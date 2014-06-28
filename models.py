@@ -28,7 +28,7 @@ class SiteCollection:
         self.sites.append(site)
 
     def objects(self):
-        return sites
+        return self.sites
 
 
 class PollutantData:
