@@ -10,9 +10,8 @@ def get_pollutants():
     data = [{"id": p.id,
                     "name": p.name,
                     "unit": p.unit} for p in pollutant_collection.objects()]
-    print data
     return jsonify({"pollutants": data})
-    
+
 @app.route('/sites')
 def get_sites():
     return 'Sites'

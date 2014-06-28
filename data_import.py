@@ -51,7 +51,6 @@ class SingleSiteCSVParser:
             # Add pollutants to collection if they are not already there
             for pollutant in self.pollutants:
                 if len(self.pollutant_collection.find(id=pollutant.id)) == 0:
-                    print "Adding pollutant %s" % pollutant.id
                     self.pollutant_collection.add_pollutant(pollutant)
 
     def parse_row(self, row):
