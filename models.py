@@ -38,6 +38,12 @@ class SiteCollection:
     def objects(self):
         return self.sites
 
+    def get_by_id(self, id):
+        for site in self.sites:
+            if site.id == id:
+                return site
+        return None
+
 
 class PollutantData:
     def __init__(self, pollutant, site, timestamp, value):

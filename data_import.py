@@ -117,6 +117,6 @@ if __name__ == '__main__':
     SingleSiteCSVParser("data/OX_2014.csv", site_collection, pollutant_collection, pollutant_data_collection)
     SingleSiteCSVParser("data/OX8_2014.csv", site_collection, pollutant_collection, pollutant_data_collection)
 
-    print len(site_collection.objects())
+    print site_collection.objects()
     print len(pollutant_collection.objects())
     print len(pollutant_data_collection.objects())
