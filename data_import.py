@@ -91,7 +91,7 @@ class SingleSiteCSVParser:
             if value is not None:
                 #print "%s at %s: %d %s" % (pollutant.id, str(timestamp), value, pollutant.unit)
                 data = PollutantData(pollutant, self.site, timestamp, value)
-                pollutant_data_collection.add_pollutant_data(data)
+                self.pollutant_data_collection.add_pollutant_data(data)
 
     def _parse_timestamp(self, date, time):
         # Time parsing is a bit complicated by the fact that the CSV uses 01-01-2014 24:00 instead of 02-01-2014 00:00
