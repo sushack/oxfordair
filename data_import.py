@@ -69,7 +69,7 @@ class SingleSiteCSVParser:
             self._parse_schema_line(row)
             return
 
-        self.site = Site(make_simple_id_from_name(self.site_name), self.site_name, [self.pollutants])
+        self.site = Site(make_simple_id_from_name(self.site_name), self.site_name, self.pollutants)
 
         timestamp = self._parse_timestamp(row[0], row[1])
 
