@@ -46,7 +46,7 @@ class PollutantDataCollection:
         self.pollutant_data.append(pollutant_data)
 
     def objects(self):
-        return pollutant_data
+        return self.pollutant_data
 
     def find(self, site=None, pollutant=None):
         ret = pollutant_data
