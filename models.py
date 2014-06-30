@@ -21,6 +21,12 @@ class PollutantCollection:
         if name is not None:
             ret = filter(lambda x: x.name == name, ret)
         return ret
+    
+    def get_by_id(self, id):
+        for pollutant in self.pollutants:
+            if pollutant.id == id:
+                return pollutant
+        return None
 
 class Site:
     def __init__(self, id, name, available_pollutants):
